@@ -1,12 +1,13 @@
-import React, { useContext } from 'react'
+import { useContext } from 'react'
 import { GlobalContext } from '../Contextbox'
 
 export default function Home() {
 
-const {dark}=useContext(GlobalContext)
-console.log(dark);
+const {dark, usernameVal}=useContext(GlobalContext)
+console.log(usernameVal);
 
   return (
-    <div>Home</div>
+    <div onClick={()=>console.log(usernameVal)
+    }>Home</div>
   )
 }

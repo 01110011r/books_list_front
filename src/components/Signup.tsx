@@ -2,24 +2,17 @@ import { FcGoogle } from "react-icons/fc";
 import { BsFacebook } from "react-icons/bs";
 import { CiCircleRemove } from "react-icons/ci"
 import { Link } from "react-router-dom";
-import React, { useRef } from "react";
+import { useContext } from "react";
+import { GlobalContext } from "../Contextbox";
 
 
 export default function Signup() {
 
-  const usernameVal = useRef<HTMLInputElement>(null);
-  const emailVal = useRef<HTMLInputElement>(null);
-  const passwordVal = useRef<HTMLInputElement>(null);
+  const {HandleClearClick, usernameVal, emailVal, passwordVal}=useContext(GlobalContext);
 
   console.log(usernameVal.current);
 
 
-function HandleClearClick(RefHook:React.RefObject<HTMLInputElement>){
-  if (RefHook.current) {
-    RefHook.current.focus();
-    RefHook.current.value = "";
-  }
-}
 
 
   return (
@@ -49,19 +42,20 @@ function HandleClearClick(RefHook:React.RefObject<HTMLInputElement>){
           <label htmlFor="" className="flex flex-col">
             <span>Your email</span>
             <div className=" flex gap-x-2 border-[1px] rounded-md p-2 items-center">
-              <input className=" outline-none w-full" type="email" placeholder="Enter your email" />
-              <CiCircleRemove className=" cursor-pointer" />
+              <input ref={emailVal} className=" outline-none w-full" type="email" placeholder="Enter your email" />
+              <CiCircleRemove className=" cursor-pointer" onClick={()=>HandleClearClick(emailVal)} />
             </div>
           </label>
           <label htmlFor="" className="flex flex-col">
             <span>Your password</span>
             <div className=" flex gap-x-2 border-[1px] rounded-md p-2 items-center">
-              <input className=" outline-none w-full" type="password" placeholder="Enter your username" />
-              <CiCircleRemove className=" cursor-pointer" />
+              <input ref={passwordVal} className=" outline-none w-full" type="password" placeholder="Enter your username" />
+              <CiCircleRemove className=" cursor-pointer" onClick={()=>HandleClearClick(passwordVal)} />
             </div>
           </label>
 
-          <button type="button" className=" mt-9 bg-[#6200EE] text-white rounded-md py-2">Submit</button>
+          <button onClick={()=>{console.log(usernameVal.current?.value);
+          }} type="button" className=" mt-9 bg-[#6200EE] text-white rounded-md py-2">Submit</button>
         </form>
         <p className=" text-center mt-2 opacity-60">Already signed up? <Link className="text-[#6200EE]" to={'/signin'}>Go to  sign in.</Link></p>
       </div>
