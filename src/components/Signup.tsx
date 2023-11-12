@@ -2,17 +2,24 @@ import { FcGoogle } from "react-icons/fc";
 import { BsFacebook } from "react-icons/bs";
 import { CiCircleRemove } from "react-icons/ci"
 import { Link } from "react-router-dom";
-import { useRef } from "react";
+import React, { useRef } from "react";
 
 
 export default function Signup() {
 
-  const nameVal = useRef<HTMLInputElement>(null);
-  const emailVal = useRef<HTMLInputElement>(null);
   const usernameVal = useRef<HTMLInputElement>(null);
+  const emailVal = useRef<HTMLInputElement>(null);
+  const passwordVal = useRef<HTMLInputElement>(null);
 
-  // console.log(nameVal.current?.focus());
+  console.log(usernameVal.current);
 
+
+function HandleClearClick(RefHook:React.RefObject<HTMLInputElement>){
+  if (RefHook.current) {
+    RefHook.current.focus();
+    RefHook.current.value = "";
+  }
+}
 
 
   return (
@@ -35,8 +42,8 @@ export default function Signup() {
           <label htmlFor="" className="flex flex-col ">
             <span>Your username</span>
             <div className=" flex gap-x-2 border-[1px] rounded-md p-2 items-center">
-              <input value={nameVal.current?.value} ref={nameVal} className=" outline-none w-full" type="text" placeholder="Enter your username" />
-              <CiCircleRemove className=" cursor-pointer" onClick={() => { nameVal.current?.focus()}} />
+              <input ref={usernameVal} className=" outline-none w-full" type="text" placeholder="Enter your username" />
+              <CiCircleRemove className={"cursor-pointer username"} onClick={()=>HandleClearClick(usernameVal)} />
             </div>
           </label>
           <label htmlFor="" className="flex flex-col">
