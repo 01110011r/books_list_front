@@ -10,6 +10,12 @@ export default {
         'main-bg': "url('../public/Rectangle\ 2.png')"
       }
     },
+
+
+    container: {
+      center: true,
+      padding: '1rem'
+    },
   },
   plugins: [],
 }
