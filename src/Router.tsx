@@ -1,8 +1,8 @@
 import { Route, Routes } from 'react-router-dom'
-import Home from './components/Home'
-import Signup from './components/Signup'
-import Signin from './components/Signin'
-import Error404 from './components/Error404'
+import Home from './pages/Home'
+import Signup from './pages/Signup'
+import Signin from './pages/Signin'
+import Error404 from './pages/Error404'
 
 export default function Router() {
   return (

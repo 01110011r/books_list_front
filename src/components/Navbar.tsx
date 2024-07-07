@@ -26,12 +26,12 @@ export default function Navbar() {
                     </button>
                 </div>
                 <div className=" flex items-center gap-x-4 relative">
-                    <Link to={'#'}>
+                    <button>
                         <RiNotification3Line className=" w-5 h-5" />
-                    </Link>
-                    <Link to={'#'}>
+                    </button>
+                    <button>
                         <VscAccount className=" w-5 h-5" />
-                    </Link>
+                    </button>
 
                 </div>
                 <Search />

@@ -1,6 +1,6 @@
 import { useContext } from 'react'
 import { GlobalContext } from '../Contextbox'
-import Navbar from './Navbar';
+import Navbar from '../components/Navbar';
 
 export default function Home() {
 
