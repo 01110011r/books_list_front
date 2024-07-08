@@ -1,20 +1,23 @@
 import { FcGoogle } from "react-icons/fc";
-import { BsFacebook } from "react-icons/bs";
 import { CiCircleRemove } from "react-icons/ci"
 import { Link } from "react-router-dom";
 import { useContext } from "react";
 import { GlobalContext } from "../Contextbox";
+import { useGoogleLogin } from "@react-oauth/google";
 
 
 export default function Signin() {
 
 
-const {HandleClearClick, usernameVal, emailVal, passwordVal}=useContext(GlobalContext);
+const {HandleClearClick, usernameVal, passwordVal}=useContext(GlobalContext);
 
 
 
-  console.log(usernameVal.current);
+  // console.log(usernameVal.current);
 
+  const login = useGoogleLogin({
+    onSuccess: tokenResponse => console.log(tokenResponse)
+  });
 
 
   return (
@@ -25,9 +28,7 @@ const {HandleClearClick, usernameVal, emailVal, passwordVal}=useContext(GlobalCo
           <button className="flex items-center justify-center py-2 gap-x-2 border-2 rounded-sm border-zinc-500">
             <FcGoogle className="w-6 h-6" /> <p>Continue with Google</p>
           </button>
-          <button className="flex items-center justify-center py-2 gap-x-2 border-2 rounded-sm border-zinc-500">
-            <BsFacebook className="w-6 h-6 text-blue-500" /> <p>Continue with Facebook</p>
-          </button>
+        
           <div className=" flex items-center gap-x-2 mt-3">
             <hr className=" w-full h-[2px] bg-black" /><span>OR</span><hr className=" w-full h-[2px] bg-black" />
           </div>
@@ -41,13 +42,13 @@ const {HandleClearClick, usernameVal, emailVal, passwordVal}=useContext(GlobalCo
               <CiCircleRemove className=" cursor-pointer" onClick={() => HandleClearClick(usernameVal)} />
             </div>
           </label>
-          <label htmlFor="" className="flex flex-col">
+          {/* <label htmlFor="" className="flex flex-col">
             <span>Your email</span>
             <div className=" flex gap-x-2 border-[1px] rounded-md p-2 items-center">
               <input ref={emailVal} className=" outline-none w-full" type="email" placeholder="Enter your email" />
               <CiCircleRemove className=" cursor-pointer" onClick={()=>HandleClearClick(emailVal)} />
             </div>
-          </label>
+          </label> */}
           <label htmlFor="" className="flex flex-col">
             <span>Your password</span>
             <div className=" flex gap-x-2 border-[1px] rounded-md p-2 items-center">
@@ -56,10 +57,10 @@ const {HandleClearClick, usernameVal, emailVal, passwordVal}=useContext(GlobalCo
             </div>
           </label>
 
-          <button onClick={()=>console.log(usernameVal.current?.value)
-          } type="button" className=" mt-9 bg-[#6200EE] text-white rounded-md py-2">Submit</button>
+          <button onClick={()=>login()}
+           type="button" className=" mt-9 bg-[#6200EE] text-white rounded-md py-2">Submit</button>
         </form>
-        <p className=" text-center mt-2 opacity-60">Do you to create new account? <Link className="text-[#6200EE]" to={'/signup'}>Go to  sign up.</Link></p>
+        <p className=" text-center mt-2 opacity-60">Haven't an account yet? <Link className="text-[#6200EE]" to={'/signup'}>Go to  sign up.</Link></p>
       </div>
     </div>
   )

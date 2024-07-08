@@ -7,7 +7,7 @@ export default {
   theme: {
     extend: {
       backgroundImage: {
-        'main-bg': "url('../public/Rectangle\ 2.png')"
+        'main-bg': "url('../public/Rectangle 2.png')"
       }
     },
 

@@ -1,17 +1,21 @@
 import { FcGoogle } from "react-icons/fc";
-import { BsFacebook } from "react-icons/bs";
 import { CiCircleRemove } from "react-icons/ci"
 import { Link } from "react-router-dom";
 import { useContext } from "react";
 import { GlobalContext } from "../Contextbox";
+import { useGoogleLogin } from "@react-oauth/google";
 
 
 export default function Signup() {
 
-  const {HandleClearClick, usernameVal, emailVal, passwordVal}=useContext(GlobalContext);
+  const {HandleClearClick, usernameVal, passwordVal}=useContext(GlobalContext);
 
-  console.log(usernameVal.current);
+  // console.log(usernameVal.current);
 
+ 
+const login = useGoogleLogin({
+  onSuccess: tokenResponse => console.log(tokenResponse),
+});
 
 
 
@@ -20,12 +24,13 @@ export default function Signup() {
       <div className=' md:min-w-[430px] md:py-12 py-7 px-4 bg-white rounded-xl'>
         <h2 className=" text-center mb-7 text-3xl font-bold">Sign up</h2>
         <div className="flex flex-col gap-y-2">
-          <button className="flex items-center justify-center py-2 gap-x-2 border-2 rounded-sm border-zinc-500">
+          <button
+          onClick={() => login()}
+           className="flex items-center justify-center py-2 gap-x-2 border-2 rounded-sm border-zinc-500"
+           >
             <FcGoogle className="w-6 h-6" /> <p>Continue with Google</p>
           </button>
-          <button className="flex items-center justify-center py-2 gap-x-2 border-2 rounded-sm border-zinc-500">
-            <BsFacebook className="w-6 h-6 text-blue-500" /> <p>Continue with Facebook</p>
-          </button>
+
           <div className=" flex items-center gap-x-2 mt-3">
             <hr className=" w-full h-[2px] bg-black" /><span>OR</span><hr className=" w-full h-[2px] bg-black" />
           </div>
@@ -39,13 +44,13 @@ export default function Signup() {
               <CiCircleRemove className={"cursor-pointer username"} onClick={()=>HandleClearClick(usernameVal)} />
             </div>
           </label>
-          <label htmlFor="" className="flex flex-col">
+          {/* <label htmlFor="" className="flex flex-col">
             <span>Your email</span>
             <div className=" flex gap-x-2 border-[1px] rounded-md p-2 items-center">
               <input ref={emailVal} className=" outline-none w-full" type="email" placeholder="Enter your email" />
               <CiCircleRemove className=" cursor-pointer" onClick={()=>HandleClearClick(emailVal)} />
             </div>
-          </label>
+          </label> */}
           <label htmlFor="" className="flex flex-col">
             <span>Your password</span>
             <div className=" flex gap-x-2 border-[1px] rounded-md p-2 items-center">

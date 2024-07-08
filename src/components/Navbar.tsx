@@ -6,15 +6,16 @@ import { VscAccount } from "react-icons/vsc";
 import Search from "./Search";
 import { useContext } from "react";
 import { GlobalContext } from "../Contextbox";
+import Menu from "./Menu";
 
 
 export default function Navbar() {
 
-    const { setSearchModal } = useContext(GlobalContext);
+    const { setSearchModal, setMenu, menu } = useContext(GlobalContext);
 
 
     return (
-        <nav className=" container">
+        <nav className="container">
 
             <div className=" flex items-center justify-between gap-x-4 py-4 relative">
                 <div className=" flex items-center sm:gap-x-9 gap-x-5">
@@ -25,14 +26,15 @@ export default function Navbar() {
                         <BiSearchAlt className=" sm:w-7 sm:h-7 w-5 h-5 text-white" /><span className=" text-white opacity-70 md:inline-block hidden">Search for only training you want</span>
                     </button>
                 </div>
-                <div className=" flex items-center gap-x-4 relative">
+                <div className=" flex items-center gap-x-4 relative md:text-inherit text-white">
                     <button>
                         <RiNotification3Line className=" w-5 h-5" />
                     </button>
-                    <button>
+                    <button onClick={() => setMenu(!menu)}>
                         <VscAccount className=" w-5 h-5" />
                     </button>
 
+                    <Menu/>
                 </div>
                 <Search />
             </div>

@@ -1,8 +1,10 @@
-import { createContext, useRef, useState } from "react"
+import React, { createContext, useRef, useState } from "react"
 
 
 
 type StateContextType = {
+  menu: boolean;
+  setMenu: React.Dispatch<React.SetStateAction<boolean>>;
   searchModal: boolean;
   setSearchModal: React.Dispatch<React.SetStateAction<boolean>>;
   HandleClearClick: (RefHook: React.RefObject<HTMLInputElement>) => void;
@@ -21,6 +23,7 @@ type ContextProviderProps = {
 export default function Contextbox({ children }: ContextProviderProps) {
 
   const [searchModal, setSearchModal] = useState(false);
+  const [menu, setMenu] = useState(false);
 
   // AUTH ==>
 
@@ -41,7 +44,7 @@ export default function Contextbox({ children }: ContextProviderProps) {
 
 
   return (
-    <GlobalContext.Provider value={{ searchModal, setSearchModal, HandleClearClick, usernameVal, emailVal, passwordVal }}>
+    <GlobalContext.Provider value={{menu, setMenu, searchModal, setSearchModal, HandleClearClick, usernameVal, emailVal, passwordVal }}>
       {children}
     </GlobalContext.Provider>
   )
