@@ -4,8 +4,8 @@ import { BiSearchAlt } from "react-icons/bi";
 import { RiNotification3Line } from "react-icons/ri";
 import { VscAccount } from "react-icons/vsc";
 import Search from "./Search";
-import { useContext } from "react";
-import { GlobalContext } from "../Contextbox";
+import { useContext, useEffect, useState } from "react";
+import { GlobalContext } from "../utils/Contextbox";
 import Menu from "./Menu";
 
 
@@ -13,9 +13,24 @@ export default function Navbar() {
 
     const { setSearchModal, setMenu, menu } = useContext(GlobalContext);
 
+    const [isScrolled, setIsScrolled] = useState(false);
+
+    useEffect(() => {
+      const handleScroll = () => {
+        if (window.scrollY > 50) {
+          setIsScrolled(true);
+        } else {
+          setIsScrolled(false);
+        }
+      };
+  
+      window.addEventListener('scroll', handleScroll);
+  
+      return () => window.removeEventListener('scroll', handleScroll);
+    }, []);
 
     return (
-        <nav className="container">
+        <nav className={`container duration-500 transition-colors ${isScrolled ? ' bg-stone-800 fixed' : ''}`}>
 
             <div className=" flex items-center justify-between gap-x-4 py-4 relative">
                 <div className=" flex items-center sm:gap-x-9 gap-x-5">

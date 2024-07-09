@@ -2,7 +2,7 @@ import { FcGoogle } from "react-icons/fc";
 import { CiCircleRemove } from "react-icons/ci"
 import { Link } from "react-router-dom";
 import { useContext } from "react";
-import { GlobalContext } from "../Contextbox";
+import { GlobalContext } from "../utils/Contextbox";
 import { useGoogleLogin } from "@react-oauth/google";
 
 

@@ -2,7 +2,7 @@ import { googleLogout } from '@react-oauth/google'
 // import { jwtDecode } from 'jwt-decode'
 import React, { useContext } from 'react'
 import { MdOutlineLogout } from 'react-icons/md'
-import { GlobalContext } from '../Contextbox'
+import { GlobalContext } from '../utils/Contextbox'
 
 
 export default function Menu() {

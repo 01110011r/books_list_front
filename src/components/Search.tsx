@@ -1,6 +1,6 @@
 import { useContext } from "react";
 import { MdClear } from "react-icons/md";
-import { GlobalContext } from "../Contextbox";
+import { GlobalContext } from "../utils/Contextbox";
 
 
 
